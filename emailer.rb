@@ -38,23 +38,49 @@
 
 require 'pony'
 
-Pony.mail({
-  :to => 'davidstechnicalsolutions@gmail.com',
-  :via => :smtp,
-  :subject  => 'this is the subject',
-  :body => 'this is the text',
-  :via_options => {
+# Pony.mail({
+#   :to => 'davidstechnicalsolutions@gmail.com',
+#   :via => :smtp,
+#   :subject  => 'this is the subject',
+#   :body => 'this is the text in email' + num + '. How many more will there be?',
+#   :via_options => {
 
-    :address              => 'smtp.gmail.com',
-    :port                 => '587',
-    :enable_starttls_auto => true,
-    :user_name            => 'davidm8624',
-    :password             => 'ipwiypixdftyvhkh',
-    :authentication       => :plain, # :plain, :login, :cram_md5, no auth by default
-    :domain               => "localhost.localdomain", # the HELO domain provided by the client to the server
+#     :address              => 'smtp.gmail.com',
+#     :port                 => '587',
+#     :enable_starttls_auto => true,
+#     :user_name            => 'davidm8624',
+#     :password             => 'ipwiypixdftyvhkh',
+#     :authentication       => :plain, # :plain, :login, :cram_md5, no auth by default
+#     :domain               => "localhost.localdomain", # the HELO domain provided by the client to the server
 
-  }
-})
+#   }
+# })
 
 # Pony.mail(:to => 'davidstechnicalsolutions@gmail.com', :from => 'davidm8624@gmail.com', :subject => 'hi', :body => 'Hello there.')
+
+num = 0
+times_to_spam = 5
+
+until (num == times_to_spam) do
+  Pony.mail({
+    :to => 'davidstechnicalsolutions@gmail.com',
+    :via => :smtp,
+    :subject  => 'Bring back Srircha sauce!',
+    :body => "This is automated email number #{num}. Dont bother responding. Bring back Sriracha sauce!",
+    :via_options => {
+  
+      :address              => 'smtp.gmail.com',
+      :port                 => '587',
+      :enable_starttls_auto => true,
+      :user_name            => 'davidm8624',
+      :password             => 'ipwiypixdftyvhkh',
+      :authentication       => :plain, # :plain, :login, :cram_md5, no auth by default
+      :domain               => "localhost.localdomain", # the HELO domain provided by the client to the server
+  
+    }
+  })
+
+  num = num + 1
+
+end
 

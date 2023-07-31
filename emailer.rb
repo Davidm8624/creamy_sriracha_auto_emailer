@@ -1,4 +1,6 @@
-require 'net/smtp'
+#for those wondering, yes, after this project the key will be deleted
+
+# require 'net/smtp'
 
 # FROM_EMAIL = "davidm8624@gmail.com"
 # PASSWORD = "ipwiypixdftyvhkh"
@@ -20,16 +22,39 @@ require 'net/smtp'
 
 
 
-message = <<END_OF_MESSAGE
-From: YourRubyApp <davidm8624@gmail.com>
-To: BestUserEver <davidstechnicalsolutions@gmail.com>
-Subject: ruby emailer
+# message = <<END_OF_MESSAGE
+# From: YourRubyApp <davidm8624@gmail.com>
+# To: BestUserEver <davidstechnicalsolutions@gmail.com>
+# Subject: ruby emailer
 
-Lorem Ipsum
-END_OF_MESSAGE
+# Lorem Ipsum
+# END_OF_MESSAGE
 
-Net::SMTP.start('your.smtp.server', 25) do |smtp|
-  smtp.send_message message,
-    'davidm8624@gmail.com',
-    'davidstechnicalsolutuions@gmail.com'
-end
+# Net::SMTP.start('your.smtp.server', 25) do |smtp|
+#   smtp.send_message message,
+#     'davidm8624@gmail.com',
+#     'davidstechnicalsolutuions@gmail.com'
+# end
+
+require 'pony'
+
+Pony.mail({
+  :to => 'davidstechnicalsolutions@gmail.com',
+  :via => :smtp,
+  :subject  => 'this is the subject',
+  :body => 'this is the text',
+  :via_options => {
+
+    :address              => 'smtp.gmail.com',
+    :port                 => '587',
+    :enable_starttls_auto => true,
+    :user_name            => 'davidm8624',
+    :password             => 'ipwiypixdftyvhkh',
+    :authentication       => :plain, # :plain, :login, :cram_md5, no auth by default
+    :domain               => "localhost.localdomain", # the HELO domain provided by the client to the server
+
+  }
+})
+
+# Pony.mail(:to => 'davidstechnicalsolutions@gmail.com', :from => 'davidm8624@gmail.com', :subject => 'hi', :body => 'Hello there.')
+

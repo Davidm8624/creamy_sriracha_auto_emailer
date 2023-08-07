@@ -59,8 +59,10 @@ require 'pony'
 # Pony.mail(:to => 'davidstechnicalsolutions@gmail.com', :from => 'davidm8624@gmail.com', :subject => 'hi', :body => 'Hello there.')
 
 num = 0
-times_to_spam = 5
+puts "how many emails would you like to send?"
+times_to_spam = gets
 
+def bot(num, times_to_spam)
 until (num == times_to_spam) do
   Pony.mail({
     :to => 'davidstechnicalsolutions@gmail.com',
@@ -83,4 +85,9 @@ until (num == times_to_spam) do
   num = num + 1
 
 end
+end
 
+bot()
+
+#problem with this setup is that num is set back t 0 every time rather then counting up every time. Will be adding txt file to save it under.
+#next i need to change it to a for loop accepting the # of emails that I want to send.
